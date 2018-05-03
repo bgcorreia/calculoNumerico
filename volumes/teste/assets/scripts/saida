@@ -1,0 +1,53 @@
+3
+[31m | 0  0  0   |  0 | [0;0m
+[31m | 0  0  0   |  0 | [0;0m
+[31m | 0  0  0   |  0 | [0;0m
+ELEMENTO LINHA  0  E COLUNA  0
+ELEMENTO LINHA  0  E COLUNA  1
+ELEMENTO LINHA  0  E COLUNA  2
+ELEMENTO LINHA  0  E COLUNA  3
+ELEMENTO LINHA  1  E COLUNA  0
+ELEMENTO LINHA  1  E COLUNA  1
+ELEMENTO LINHA  1  E COLUNA  2
+ELEMENTO LINHA  1  E COLUNA  3
+ELEMENTO LINHA  2  E COLUNA  0
+ELEMENTO LINHA  2  E COLUNA  1
+ELEMENTO LINHA  2  E COLUNA  2
+ELEMENTO LINHA  2  E COLUNA  3
+[31m | 8.0  4.0  5.0   |  -23.0 | [0;0m
+[31m | 4.0  8.0  1.0   |  -7.0 | [0;0m
+[31m | -2.0  -10.0  2.0   |  0.0 | [0;0m
+[34m PRIMEIRO -  8.0  SEGUNDO -  4.0 	--- 0.5 [0;0m
+[34m PRIMEIRO -  8.0  SEGUNDO -  -2.0 	--- 0.625 [0;0m
+[34m PRIMEIRO -  8.0  SEGUNDO -  -10.0 	--- 0.125 [0;0m
+[0.5, -0.25, -1.25]
+------------------------------------ c -->  1
+[31m | 8.0  4.0  5.0   |  -23.0 | [0;0m
+[31m | 4.0  8.0  1.0   |  -7.0 | [0;0m
+[31m | -2.0  -10.0  2.0   |  0.0 | [0;0m
+VALOR DE J ::  0
+VALOR DE J ::  1
+VALOR DE J ::  2
+VALOR DE J ::  3
+VALOR DE J ::  0
+VALOR DE J ::  1
+VALOR DE J ::  2
+VALOR DE J ::  3
+[34m PRIMEIRO -  8.0  SEGUNDO -  0.0 	--- 0.5 [0;0m
+[34m PRIMEIRO -  8.0  SEGUNDO -  0.0 	--- 0.625 [0;0m
+[34m PRIMEIRO -  6.0  SEGUNDO -  -9.0 	--- -0.25 [0;0m
+[0.0, 0.0, -1.5]
+------------------------------------ c -->  2
+[31m | 8.0  4.0  5.0   |  -23.0 | [0;0m
+[31m | 0.0  6.0  -1.5   |  4.5 | [0;0m
+[31m | 0.0  -9.0  3.25   |  -5.75 | [0;0m
+VALOR DE J ::  1
+VALOR DE J ::  2
+VALOR DE J ::  3
+[34m PRIMEIRO -  8.0  SEGUNDO -  0.0 	--- 0.5 [0;0m
+[34m PRIMEIRO -  8.0  SEGUNDO -  0.0 	--- 0.625 [0;0m
+[34m PRIMEIRO -  6.0  SEGUNDO -  0.0 	--- -0.25 [0;0m
+[0.0, 0.0, 0.0]
+[31m | 8.0  4.0  5.0   |  -23.0 | [0;0m
+[31m | 0.0  6.0  -1.5   |  4.5 | [0;0m
+[31m | 0.0  0.0  1.0   |  1.0 | [0;0m
