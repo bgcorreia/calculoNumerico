@@ -1,0 +1,30 @@
+version: "3.4"
+
+services:
+
+    nginx_numerico:
+        build: ./build/nginx
+        container_name: numerico_webserver
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ./volumes/files:/var/www/html
+        depends_on:
+             - php_numerico
+        networks:
+            - webserver
+            - php
+
+    php_numerico:
+        image: php:7.2.2-fpm
+        container_name: numerico_php
+        restart: always
+        volumes:
+            - ./volumes/files:/var/www/html
+        networks:
+             - php
+
+networks:
+    webserver:
+    php:
