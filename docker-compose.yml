@@ -44,7 +44,7 @@ services:
         container_name: calculonumerico_webserver
         restart: always
         volumes:
-            - ./volumes/files:/var/www/html
+            - ./volumes/calculonumerico_webfiles:/var/www/html
         depends_on:
              - php_numerico
         networks:
@@ -56,7 +56,7 @@ services:
         container_name: numerico_php
         restart: always
         volumes:
-            - ./volumes/files:/var/www/html
+            - ./volumes/calculonumerico_webfiles:/var/www/html
         networks:
              - php
         environment:

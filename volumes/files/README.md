@@ -1,1 +1,0 @@
-# calculonumerico - CALCULO N
