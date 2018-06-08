@@ -2,12 +2,47 @@ version: "3.4"
 
 services:
 
-    nginx_numerico:
-        build: ./build/nginx
-        container_name: numerico_webserver
-        restart: always
+    proxy_numerico:
+        build: ./build/proxy
+        container_name: proxy
         ports:
             - "80:80"
+            - "443:443"
+        volumes:
+            - certs:/etc/letsencrypt
+        depends_on:
+            - letsencrypt_numerico
+        networks:
+            - proxy
+            - letsencrypt
+            - webserver
+        environment:
+            - APPS_NUMBER=${APPS_NUMBER}
+            - APPNAME1=${APPNAME1}
+            - DOMAIN1=${DOMAIN1}
+            - FQDN=${FQDN}
+            - DOMAIN=${DOMAIN}
+        command: /bin/bash -c "genAppNginx -n ${APPS_NUMBER} -o /etc/nginx/conf.d/ && nginx -g 'daemon off;'"
+
+    letsencrypt_numerico:
+        build: ./build/letsencrypt
+        container_name: letsencrypt
+        restart: always
+        volumes:
+            - certs:/etc/letsencrypt
+        depends_on:
+            - nginx_numerico
+        networks:
+            - letsencrypt
+        environment:
+            - FQDN=${FQDN}
+            - DOMAIN=${DOMAIN}
+            - EMAIL_LETS=${EMAIL_LETS}
+
+    nginx_numerico:
+        build: ./build/nginx
+        container_name: calculonumerico_webserver
+        restart: always
         volumes:
             - ./volumes/files:/var/www/html
         depends_on:
@@ -17,14 +52,25 @@ services:
             - php
 
     php_numerico:
-        image: php:7.2.2-fpm
+        build: ./build/php
         container_name: numerico_php
         restart: always
         volumes:
             - ./volumes/files:/var/www/html
         networks:
              - php
+        environment:
+            - TOKEN=${TOKEN}
+            - REPOSITORIO=${REPOSITORIO}
+            - RAMO=${RAMO}
+            - DIRETORIO=${DIRETORIO}
+        command: /bin/bash -c "envsubst '$${TOKEN} $${REPOSITORIO} $${RAMO} $${DIRETORIO}' < hooks/deploy-config-example.php > hooks/deploy-config.php && php-fpm"
+
+volumes:
+    certs:
 
 networks:
+    proxy:
+    letsencrypt:
     webserver:
     php:
