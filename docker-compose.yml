@@ -18,12 +18,9 @@ services:
             - letsencrypt
             - php
         environment:
-            - APPS_NUMBER=${APPS_NUMBER}
-            - APPNAME1=${APPNAME1}
-            - DOMAIN1=${DOMAIN1}
-            - FQDN=${FQDN}
+            - APPNAME=${APPNAME}
             - DOMAIN=${DOMAIN}
-        command: /bin/bash -c "genAppNginx -n ${APPS_NUMBER} -o /etc/nginx/conf.d/ && nginx -g 'daemon off;'"
+        command: /bin/bash -c "genAppNginx --single-app -o /etc/nginx/conf.d/ && nginx -g 'daemon off;'"
 
     letsencrypt_numerico:
         build: ./build/letsencrypt
@@ -36,7 +33,7 @@ services:
         networks:
             - letsencrypt
         environment:
-            - FQDN=${FQDN}
+            - FQDN=${APPNAME}.${DOMAIN}
             - DOMAIN=${DOMAIN}
             - EMAIL_LETS=${EMAIL_LETS}
 
