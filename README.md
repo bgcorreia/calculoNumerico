@@ -1,4 +1,4 @@
-# Numeric Calcule
+# Numeric Calculus
 
 - [Containers](https://github.com/bgcorreia/calculoNumerico#containers)
 - [Infrastructure](https://github.com/bgcorreia/calculoNumerico#infrastructure)
