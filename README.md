@@ -63,7 +63,7 @@ OBS.: Use option -d according with need.
 After, in projecty directory:
 
 ```
-user@host:~/calculonumerico# docker-compose restart webserver_calculonumerico
+user@host:~/calculonumerico# docker-compose restart webserver_numerico
 Restarting proxy ... done
 ```
 
