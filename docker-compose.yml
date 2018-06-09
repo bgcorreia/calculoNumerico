@@ -2,20 +2,21 @@ version: "3.4"
 
 services:
 
-    proxy_numerico:
-        build: ./build/proxy
-        container_name: proxy
+    webserver_numerico:
+        build: ./build/webserver
+        container_name: numerico_webserver
         ports:
             - "80:80"
             - "443:443"
         volumes:
             - certs:/etc/letsencrypt
+            - ./volumes/calculonumerico_webfiles:/var/www/html
         depends_on:
             - letsencrypt_numerico
         networks:
-            - proxy
-            - letsencrypt
             - webserver
+            - letsencrypt
+            - php
         environment:
             - APPS_NUMBER=${APPS_NUMBER}
             - APPNAME1=${APPNAME1}
@@ -26,30 +27,18 @@ services:
 
     letsencrypt_numerico:
         build: ./build/letsencrypt
-        container_name: letsencrypt
+        container_name: numerico_letsencrypt
         restart: always
         volumes:
             - certs:/etc/letsencrypt
         depends_on:
-            - nginx_numerico
+            - php_numerico
         networks:
             - letsencrypt
         environment:
             - FQDN=${FQDN}
             - DOMAIN=${DOMAIN}
             - EMAIL_LETS=${EMAIL_LETS}
-
-    nginx_numerico:
-        build: ./build/nginx
-        container_name: calculonumerico_webserver
-        restart: always
-        volumes:
-            - ./volumes/calculonumerico_webfiles:/var/www/html
-        depends_on:
-             - php_numerico
-        networks:
-            - webserver
-            - php
 
     php_numerico:
         build: ./build/php
@@ -70,7 +59,6 @@ volumes:
     certs:
 
 networks:
-    proxy:
-    letsencrypt:
     webserver:
+    letsencrypt:
     php:
