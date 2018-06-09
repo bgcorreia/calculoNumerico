@@ -10,7 +10,7 @@
 
 ## Infrastructure
 
-![Infrastructure calculonumerico](build/images/infra-calculonumerico.jpeg)
+![Infrastructure calculonumerico](build/infra-calculonumerico.jpeg)
 
 ## Requisites
 
