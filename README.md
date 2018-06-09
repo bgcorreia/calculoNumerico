@@ -10,7 +10,7 @@
 
 ## Infrastructure
 
-![Infrastructure Pipa](build/images/infra-pipa.png)
+![Infrastructure calculonumerico](build/images/infra-calculonumerico.png)
 
 ## Requisites
 
@@ -32,21 +32,13 @@ Create file `.env` in root directory on repository informing enviremont variable
 
 ```bash
 user@host:~/calculonumerico# cat .env
-APPS_NUMBER=1
-APPNAME1=pipa
-DOMAIN1=com.br
-EMAIL_LETS=lets@domain.com
-DB_HOST=pipa_db
-DB_NAME=pipa
-DB_USER=user
-DB_PASS=123
-FQDN=www.pipa.com.br
-DOMAIN=pipa.com.br
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=587
-EMAIL_USER=user@gmail.com
-EMAIL_PASS=password
-WEBMASTER=PIPA.COM.BR
+APPNAME=www
+DOMAIN=domain.com
+EMAIL_LETS=email@domain.com
+TOKEN=token_seguro_p_webhook
+REPOSITORIO_WEBFILES=https://github.com/bgcorreia/calculonumerico_webfiles.git
+RAMO=master
+DIRETORIO=/var/www/html/
 ```
 
 ## Execution
@@ -54,7 +46,7 @@ WEBMASTER=PIPA.COM.BR
 In the root repository, execute the next command:
 
 ```bash
-user@host:~/pipa# docker-compose up -d
+user@host:~/calculonumerico# docker-compose up -d
 ```
 The option `-d` execute containers in background.
 
@@ -63,7 +55,7 @@ The option `-d` execute containers in background.
 Per default, the first execution use no-ssl. Case need use ssl, after execution (with containers running), do following:
 
 ```
-user@host:~/pipa# docker exec letsencrypt  bash -c 'certbot certonly --email ${EMAIL_LETS} -a webroot --webroot-path=/usr/share/nginx/html -d ${FQDN} -d ${DOMAIN} --agree-tos'
+user@host:~/calculonumerico# docker exec numerico_letsencrypt  bash -c 'certbot certonly --email ${EMAIL_LETS} -a webroot --webroot-path=${DIRETORIO} -d ${FQDN} -d ${DOMAIN} --agree-tos'
 ```
 
 OBS.: Use option -d according with need.
@@ -71,9 +63,8 @@ OBS.: Use option -d according with need.
 After, in projecty directory:
 
 ```
-user@host:~/pipa# docker-compose restart proxy_pipa
+user@host:~/calculonumerico# docker-compose restart webserver_calculonumerico
 Restarting proxy ... done
 ```
 
 Enjoy!
-
