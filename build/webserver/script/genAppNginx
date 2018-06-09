@@ -24,6 +24,9 @@
 # v0.2 2018-04-06, Bruno Correia:
 #       - Add use multiple domain.
 #
+# v0.3 2018-04-28, Bruno Correia:
+#       - Add single mode app.
+#
 ################################################################################
 
 USE="
@@ -32,9 +35,11 @@ Use: $(basename "$0") [OPTIONS]
 
 OPTIONS:
 
+ --single-app | For one app only 
+
  -n | --number-apps   Number apps.
 
-		          e.g.: -n mdp | --appname mdp
+		          e.g.: -n 1 | --number-apps 1
 			
  -o | --output        Directory output file.
 			
@@ -75,15 +80,9 @@ execution(){
 
 	haveCert=0
 
-	for (( i=1 ; i <= numberapps ; i++ )); do
+	if [ $singleApp ]; then
 
-		APP_TEMP=APPNAME${i}
-		
-		#DOMAIN_TEMP=DOMAIN${i}
-
-		export APPNAME=${!APP_TEMP}
-		
-		#export DOMAIN=${!DOMAIN_TEMP}
+		export FQDN=${APPNAME}.${DOMAIN}
 
 		if [ -d $DIR_LETS/$FQDN ]; then
 
@@ -99,7 +98,36 @@ execution(){
 
 		fi
 
-	done
+	else
+
+		for (( i=1 ; i <= numberapps ; i++ )); do
+
+			APP_TEMP=APPNAME${i}
+			
+			DOMAIN_TEMP=DOMAIN${i}
+
+			export APPNAME=${!APP_TEMP}
+			
+			export DOMAIN=${!DOMAIN_TEMP}
+
+			export FQDN=${APPNAME}.${DOMAIN}
+
+			if [ -d $DIR_LETS/$FQDN ]; then
+
+				echo $FQDN " - Cert found"
+
+				envsubst '${APPNAME} ${DOMAIN} ${FQDN}' < ${DIR_TEMPLATE}/app.template-ssl > ${output}/${APPNAME}.conf
+
+			else
+				
+				echo $FQDN " - Cert not yet generated"
+				
+				envsubst '${APPNAME} ${DOMAIN} ${FQDN}' < ${DIR_TEMPLATE}/app.template-nossl > ${output}/${APPNAME}.conf
+
+			fi
+
+		done
+	fi
 
 }
 
@@ -113,17 +141,28 @@ fi
 while test -n "$1"; do
 	
 	case "$1" in
+
+		-s | --single-app)
+			
+			singleApp=1;
+
+			shift
+			
+		;;
 	
 		-n | --number-apps)
 			
 			numberapps=$2
+			singleApp=0;
 			
 			if test -z "$numberapps"; then
 				echo
-				echo "Need argument -i | --image"
+				echo "Need argument -n | --number-apps"
 				echo
 				exit 1
 			fi
+
+			shift;shift
 
 		;;
 
@@ -133,40 +172,39 @@ while test -n "$1"; do
 
 			if test -z "$output"; then
 				echo
-                                echo "Need argument -o | --output"
+                echo "Need argument -o | --output"
 				echo
-                                exit 1
-                        fi
+                exit 1
+            fi
+
+            shift;shift
 		;;
 
 
 		-h | -H | --help)
-                	echo "$USE"
-	                exit 0
+            	echo "$USE"
+                exit 0
         	;;
 
 	        -v | -V | --version)
-			echo
-        	        echo -n $(basename "$0")
-                	extract_version
-			echo
-	                exit 0
+				echo
+		        echo -n $(basename "$0")
+	        	extract_version
+				echo
+                exit 0
         	;;
 
 	        *)
 			if test -n "$1"; then
-		        	echo
-		                echo "Invalid option. For help, use -h."
-		                echo
-		                exit 1
-		        fi
+	        	echo
+                echo "Invalid option. For help, use -h."
+                echo
+                exit 1
+	        fi
 	        ;;
 
 	esac
     
-	# Jump for process next action
-        shift;shift
-
 done
 
 execution
