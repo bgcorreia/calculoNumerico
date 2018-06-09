@@ -1,7 +1,7 @@
 # Numeric Calcule
 
 - [Containers](https://github.com/bgcorreia/calculoNumerico#containers)
-- [Infrastructure](https://github.com/bgcorreia/calculoNumerico#infraestructure)
+- [Infrastructure](https://github.com/bgcorreia/calculoNumerico#infrastructure)
 - [Installation](https://github.com/bgcorreia/calculoNumerico#installation)
 - [Pre-execution](https://github.com/bgcorreia/calculoNumerico#pre-execution)
 - [Execution](https://github.com/bgcorreia/calculoNumerico#execution)
