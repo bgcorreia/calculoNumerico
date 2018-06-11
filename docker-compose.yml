@@ -28,11 +28,11 @@ services:
         restart: always
         volumes:
             - certs:/etc/letsencrypt
+            - ./volumes/calculoNumerico-webfiles:${DIRETORIO}
         depends_on:
             - php_numerico
         networks:
             - letsencrypt
-            - ./volumes/calculoNumerico-webfiles:${DIRETORIO}
         environment:
             - FQDN=${APPNAME}.${DOMAIN}
             - DOMAIN=${DOMAIN}
