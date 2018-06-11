@@ -43,7 +43,7 @@ APPNAME=www
 DOMAIN=domain.com
 EMAIL_LETS=email@domain.com
 TOKEN=token_seguro_p_webhook
-REPOSITORIO_WEBFILES=https://github.com/bgcorreia/calculonumerico_webfiles.git
+REPOSITORIO_WEBFILES=https://github.com/bgcorreia/calculoNumerico-webfiles.git
 RAMO=master
 DIRETORIO=/var/www/html/
 ```
@@ -51,7 +51,7 @@ DIRETORIO=/var/www/html/
 Define permissions for user `www-data` in directory back/front which will be mounted as volume in container. Because the user may not exist on the host host, we use the gid that is standard on any system. Execute:
 
 ```bash
-user@host:~/calculonumerico# chown 33:33 -R volumes/calculonumerico_webfiles
+user@host:~/calculonumerico# chown 33:33 -R volumes/calculoNumerico-webfiles
 ```
 
 ## Execution
