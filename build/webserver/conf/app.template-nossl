@@ -6,7 +6,7 @@ server {
     
 	root /var/www/html;
     
-	index index.html;
+	index index.php;
 
         access_log /var/log/nginx/proxy-${APPNAME}.log;
 
