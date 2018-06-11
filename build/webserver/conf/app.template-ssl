@@ -37,6 +37,8 @@ server {
 
         client_max_body_size 300M;
 
+	error_page 404 = /pages/errors/404.php;
+
         location / {
                 # URLs to attempt, including pretty ones.
                 try_files   $uri $uri/ /index.php?$query_string;
