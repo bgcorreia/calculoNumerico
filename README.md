@@ -48,6 +48,12 @@ RAMO=master
 DIRETORIO=/var/www/html/
 ```
 
+Define permissions for user `www-data` in directory back/front which will be mounted as volume in container. Because the user may not exist on the host host, we use the gid that is standard on any system. Execute:
+
+```bash
+user@host:~/calculonumerico# chown 33:33 -R volumes/calculonumerico_webfiles
+```
+
 ## Execution
 
 In the root repository, execute the next command:
