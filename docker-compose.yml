@@ -32,6 +32,7 @@ services:
             - php_numerico
         networks:
             - letsencrypt
+            - ./volumes/calculoNumerico-webfiles:${DIRETORIO}
         environment:
             - FQDN=${APPNAME}.${DOMAIN}
             - DOMAIN=${DOMAIN}
