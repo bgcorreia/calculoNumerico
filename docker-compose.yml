@@ -10,7 +10,7 @@ services:
             - "443:443"
         volumes:
             - certs:/etc/letsencrypt
-            - ./volumes/calculonumerico_webfiles:${DIRETORIO}
+            - ./volumes/calculoNumerico-webfiles:${DIRETORIO}
         depends_on:
             - letsencrypt_numerico
         networks:
@@ -43,7 +43,7 @@ services:
         container_name: numerico_php
         restart: always
         volumes:
-            - ./volumes/calculonumerico_webfiles:${DIRETORIO}
+            - ./volumes/calculoNumerico-webfiles:${DIRETORIO}
         networks:
              - php
         environment:
