@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+
+    webserver_numerico:
+        image: nginx
+        container_name: numerico_webserver
+        ports:
+            - "8080:80"
+        volumes:
+            - ./volumes/nginx/numerico.conf:/etc/nginx/conf.d/default.conf
+            - ./volumes/calculoNumerico-webfiles:/var/www/html/
+        networks:
+            - php
+
+    php_numerico:
+        build: ./build/php
+        container_name: numerico_php
+        restart: always
+        volumes:
+            - ./volumes/calculoNumerico-webfiles:/var/www/html/
+        networks:
+             - php
+
+networks:
+    php:
