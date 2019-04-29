@@ -56,12 +56,18 @@ user@host:~/calculonumerico# chown 33:33 -R volumes/calculoNumerico-webfiles
 
 ## Execution
 
-In the root repository, execute the next command:
+For `production` mode, in the root repository, execute the next command:
 
 ```bash
 user@host:~/calculonumerico# docker-compose up -d
 ```
 The option `-d` execute containers in background.
+
+For `local` mode, in the root repository, execute the next command:
+
+```bash
+user@host:~/calculonumerico# docker-compose -f docker-compose-local.yml up -d
+```
 
 ## SSL
 
