@@ -61,13 +61,14 @@ For `production` mode, in the root repository, execute the next command:
 ```bash
 user@host:~/calculonumerico# docker-compose up -d
 ```
-The option `-d` execute containers in background.
 
 For `local` mode, in the root repository, execute the next command:
 
 ```bash
 user@host:~/calculonumerico# docker-compose -f docker-compose-local.yml up -d
 ```
+
+The option `-d` execute containers in background.
 
 ## SSL
 
